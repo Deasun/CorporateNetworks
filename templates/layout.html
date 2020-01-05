@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+
+    <title>Corporate Network Explorer</title>
+
+    <link rel='stylesheet' href='/static/custom.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Condensed&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abel&display=swap" rel="stylesheet">
+
+    <script src='https://code.jquery.com/jquery-3.4.1.min.js'
+        integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=' crossorigin='anonymous'></script>
+
+</head>
+
+<body>
+    <div class="header s12">
+
+        <div class='logo'>
+            <a href='/'>
+                <img src="/static/icons/logo.svg">
+            </a>
+        </div>
+
+        <div class='header-title'>
+            <h1>Corporate Network Explorer</h1>
+            <p>Connect the dots between companies and the people who control them</p>
+        </div>
+
+    </div>
+
+    {% block body %} {% endblock %}
+
+    <script src='/static/custom.js'></script>
+    <script src='/static/helper_functions.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js'></script>
+</body>
+<footer>
+
+    <div class="footer-top">
+
+        <div class='oc-logo'>
+            <a href="http://berthafoundation.org/" target="_blank">
+                <img src="/static/icons/bertha-logo.svg">
+            </a>
+        </div>
+
+        <div class="footer-logo">
+            <a href="https://www.lessonsforchange.org/equality-cant-wait-belfast/" target="_blank">
+                <img src="/static/icons/bhn-logo.png">
+            </a>
+        </div>
+
+        <div class="footer-logo">
+            <a href="https://www.pprproject.org/" target="_blank">
+                <img src="/static/icons/ppr.png">
+            </a>
+        </div>
+
+        <div class="oc-logo">
+            <p>UK registered company information sourced from:</p>
+            <a href="https://opencorporates.com/" target="_blank">
+                <img src="/static/icons/oc-logo.svg">
+            </a>
+            <p>Icons made by
+                <a target="_blank" href="https://www.flaticon.com/authors/ddara" title="dDara">dDara</a> from
+                <a target="_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+            </p>
+        </div>
+
+    </div>
+
+</footer>
+
+</html>

@@ -1,0 +1,9 @@
+
+flask_session/
+
+__pycahce__/
+venv/
+dev_config.py
+*.pyc
+flask_session/
+.vscode/

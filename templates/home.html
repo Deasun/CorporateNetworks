@@ -1,0 +1,145 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="search-error">
+        <p>{{ error }}</p>
+    </div>
+
+    <div class="carousel carousel-slider center" data-indicators="true">
+
+        <div class="carousel-item white-text" href="#one!">
+            <div class="tutorial-text">
+                <h2>Search</h2>
+                <blockquote>
+                    <p class="white-text">Corporate Network Watch reveals how different companies are linked together by the people who control them.</p>
+                    <p class="white-text">Start your search by entering the Companies House ID of the company you want to explore.</p>
+                </blockquote>
+            </div>
+            <div class="map-image">
+                <img src='/static/images/co_number.png'>
+            </div>
+        </div>
+
+        <div class="carousel-item white-text" href="#two!">
+            <div class="tutorial-text">
+                <h2>Visualise</h2>
+                <blockquote>
+                    <p class="white-text">A Corporate Network map will display all the companies that share common directors with your search.</p>
+                    <p class="white-text">Each node is a company.</p>
+                    <p class="white-text">Each link indicates that two companies share one or more directors.</p>
+                </blockquote>    
+            </div>
+            <div class="map-image">
+                <img src='/static/images/map.png'>
+            </div>
+        </div>
+
+        <div class="carousel-item white-text" href="#three!">
+            <div class="tutorial-text">
+                <h2>Explore</h2>
+                <blockquote>
+                    <p class="white-text">Hover, drag, click to explore the connections.</p>
+                    <p class="white-text">Use the left-hand tabs to isolate specific companies or directors.</p>
+                </blockquote>
+            </div>
+            <div class="map-image">
+                <img src='/static/images/explore_map.png'>
+            </div>
+        </div>
+
+        <div class="carousel-item white-text" href="#four!">
+            <div class="tutorial-text">
+                <h2>Compare</h2>
+                <blockquote>
+                    <p class="white-text">Click on the company nodes to explore information about company directors, finances and activities.</p>
+                    <p class="white-text">Where are their headquarters?<br>Who do they owe money to?<br>What do they do?<br>Who's in control?</p>
+                </blockquote>
+            </div>
+            <div class="map-image">
+                    <img src='/static/images/profiles.png'>
+            </div>
+        </div>
+
+        <div class="carousel-item white-text" href="#five!">
+            <div class="tutorial-text">
+                <h2>Strategise</h2>
+                <blockquote>
+                    <p class="white-text">Corporate Network Explorer is a launching pad for further investigations by those holding private power to account.</p>
+                    <p class="white-text">Use the map to identify key individuals, diverse business interests and vulnerabilities.</p>
+                    <p class="white-text">Click <a href='/dig-deeper' target='_blank'><i class="material-icons medium">info_outline</i></a> in the Company Profiles
+                        to get Corporate Watch's guide to digging deeper.</p>
+                </blockquote>
+            </div>        
+            <div class='strategise'>
+                <img src="/static/icons/strategise.png">
+            </div>
+        </div>
+    </div>
+
+    <div class="carousel-fixed-item center">
+        <button class="search center waves-effect">Start
+            <i class="material-icons">exit_to_app</i>
+        </button>
+    </div>
+
+    <div class="search-window">
+        <i class="close-search material-icons">close</i>
+        <div class='intro'>
+            <h3>Enter the Registered Company Number<br>to Explore its Corporate Network</h3>
+            <p>The Corporate Network will display the companies that share common Directors with the Company Number you enter.</p>
+        </div>
+        
+        <form class='input-field' action="{{ url_for('check_database') }}" method="post" role="form">
+                <label for="company_number">Company Number</label>
+                <input id="searchForm" type="text" name="company_number">
+                <button id="search-btn" class="waves-effect waves-light" type="submit">Search
+                    <i class="material-icons right">search</i>
+                </button>
+        </form>
+
+        <div>
+            <p>Don't know the Company ID?</p>
+            <a target="_blank" href="https://beta.companieshouse.gov.uk/">Find it on Companies House</a>
+        </div>
+
+    </div> 
+
+    <div class="loader-circle">
+
+        <p>Your Corporate Network is being generated.</p>
+        <p>We are searching OpenCorporates.com and Companies House for data linked to your search.</p>
+        <div class="preloader-wrapper active">
+            <div class="spinner-layer spinner-red-only">
+                <div class="circle-clipper left">
+                    <div class="circle"></div>
+                </div>
+                <div class="gap-patch">
+                    <div class="circle"></div>
+                </div>
+                <div class="circle-clipper right">
+                    <div class="circle"></div>
+                </div>
+            </div>
+        </div>
+        <p>This may take a few minutes...</p>
+        
+        <div class='loader-news'>
+            <div class='news-container'>
+                <a href='https://corporatewatch.org/' target='_blank'>
+                    <img src='/static/icons/coporate-watch.jpeg'>
+                </a>
+                <h6>Latest News</h6>
+    
+                {% for headline in headlines %}
+                    <p class='latest-news'><a target='_blank' href="{{ headline.link }}">{{ headline.text }}</a></p>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+
+
+    
+
+{% endblock %}

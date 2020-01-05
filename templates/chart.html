@@ -1,0 +1,69 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<div style="display:none" class="data">{{ data.chart_data|tojson }}</div>
+
+<div id="search-company"></div>
+
+<div class="grid-container">
+
+    <div class="grid-item-1">
+        <div class="sticky-col">
+            <div class='hover-profile-col'>
+                <div class='hover-profile'>
+                    <h6>At a Glance...</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-item-2">
+        <div class="map-area">
+            <div class='left'>
+                <p class='left'>Resize Area </p>
+                <i class="right material-icons">expand_less</i>
+            </div>
+            <div class="right custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="customSwitch1">
+                <label class="custom-control-label" for="customSwitch1">Corporate Network Helper</label>
+            </div>
+        </div>
+        <svg id='company-map'></svg>
+    </div>
+
+    <div class="grid-item-3">
+        <div class="map-title">
+            <h6>Company Profiles
+                <a href='/dig-deeper' target='_blank'>
+                    <i class="material-icons small">info_outline</i>
+                </a>
+            </h6>
+        </div>
+    </div>
+
+    <div class="grid-item-4">
+        <div class='placeholder'>
+            <img src='/static/icons/add.png' alt='Add company profile'>
+            <p><em>Click on a company in the network chart to view its profile</em></p>
+        </div>
+        <div class='placeholder'>
+            <img src='/static/icons/add.png' alt='Add company profile'>
+            <p><em>Click on a company in the network chart to view its profile</em></p>
+        </div>
+
+    </div>
+
+</div>
+
+{% include 'includes/helpers.html' %}
+
+
+<script src='https://d3js.org/d3.v5.js'></script>
+<script src="https://d3js.org/d3-drag.v1.min.js"></script>
+<script src='/static/helper_functions.js'></script>
+<script src='/static/network.js'></script>
+<script>setNetwork()</script>
+
+
+{% endblock %}
