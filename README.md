@@ -1,4 +1,4 @@
-![logo](static/icons/network.png)
+![logo|25%](static/icons/network.png)
 # Corporate Networks
 Connecting the dots between companies and the people who control them.
 
