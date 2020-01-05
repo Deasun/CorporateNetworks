@@ -1,3 +1,4 @@
+![logo](static/icons/network.png)
 # Corporate Networks
 Connecting the dots between companies and the people who control them.
 
@@ -25,6 +26,8 @@ The [D3](https://d3js.org/) javascript library is used to render the Network Cha
 
 The application is styled using HTML, CSS, and JavaScript (inc JQuery). It was developed using Visual Studio Code (v1.41.1) and is hosted on the [Heroku](https://www.heroku.com/) mobile application platform.
 
+While waiting for the Corporate Network to be generated, latest News from Corporate Watch is displayed. This news is scraped from [Corporate Watch](https://corporatewatch.org/) once daily using the [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) python library.
+
 ### Development and Production
 During development, store the following environment variables in a **dev_config.py** file (add to .gitignore) in the local directory:
 
@@ -36,7 +39,7 @@ During development, store the following environment variables in a **dev_config.
 * PORT='5000'
 * DEBUG='True'
 
-During production enviornment variables are set in Heroku Config Vars during production and debug is set to 'False'.
+During production environment variables are set in Heroku Config Vars during production and debug is set to 'False'.
 
 ## Getting the code up and running
 1. Create a virtual environment running python 3.7.5 as the default in your IDE
@@ -49,6 +52,15 @@ During production enviornment variables are set in Heroku Config Vars during pro
 
 5. The project will now run on localhost (http://127.0.0.1:5000/)
 
-## Version 2.0
+### Version 2.0
 Key features to be improved include:
 * sourcing more accurate and up to date financial information and/or presenting available information differently
+
+## Credits
+
+### Developer
+Dessie Donnelly (email: des_donn@mailbox.org)
+
+Equality Can't Wait & #BuildHomesNow campaign C/O PPR, Ground Floor, Community House, Citylink Business Park 6A Albert Street, Belfast, BT12 4HQ (tel: 028 90313315) Contact: Elfie Seymour (email: elfie@pprproject.org)
+
+Icons on the site are produced by dDara at [Flaticon](https://www.flaticon.com/authors/ddara)
