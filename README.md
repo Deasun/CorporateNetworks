@@ -1,4 +1,4 @@
-![logo](static/icons/network.png)
+<img src='static/icons/network.png' width="100" height="100" title="Logo">
 # Corporate Networks
 Connecting the dots between companies and the people who control them.
 
