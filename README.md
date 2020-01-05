@@ -43,7 +43,7 @@ During production environment variables are set in Heroku Config Vars during pro
 
 ## Getting the code up and running
 1. Create a virtual environment running python 3.7.5 as the default in your IDE
-2. Clone this repository by running the git clone https://github.com/Deasun/snAPP.git command 
+2. Clone this repository by running the ```git clone https://github.com/Deasun/CorporateNetworks.git``` command 
 3. pip install requirements
 4. Set your own environment variables for development mode as described in the Deployment section above. Save these in an dev_config.py file in your root directory. 
 > In app.py file:
