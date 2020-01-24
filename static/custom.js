@@ -1,6 +1,6 @@
-// Comapny charges accordian effect
+// Company charges accordian effect
 $(document).on('click', '.entitled', function () {
-    $(this).nextAll('.descriptions').slideToggle().first()
+    $(this).nextAll('.descriptions').first().slideToggle()
 })
 
 // Company Network Helper features following DOM change
@@ -15,7 +15,6 @@ $(document).on('click', 'circle', function() {
     networkHelper($('[class^="tab-finances"] .tab-icons'), '#finance-tab-helper')
     networkHelper($('[class^="tab-details"] .tab-icons'), '#info-tab-helper')
 })
-
 
 $(document).ready(function () {
     $('#customSwitch1').on('click', function() {

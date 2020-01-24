@@ -84,10 +84,10 @@ function highlightNode(arr, element) {
     $(element).on('click', function() {
         
         $(element).css({
-            'color': '#f4f5fd8c',
+            'color': '#ffe303',
             'background': 'None',
             'padding-left': '0px',
-            'font-size': '11px'
+            'font-size': '12px'
         })
         
         $(this).css({
@@ -177,10 +177,10 @@ function addDirsList() {
 
         // Reset Director Selection
         $('.dir-list').css({
-            'color': '#f4f5fdde',
+            'color': '#ffe303',
             'background': 'None',
             'padding-left': '0px',
-            'font-size': '11px'
+            'font-size': '12px'
         })
         $('circle').css('stroke', 'none')
     })
@@ -235,7 +235,8 @@ function addFinances(itemA, itemB, element) {
 // Toggle Company charges details
 function toggleElements() {
         $('.entitled').on('click', function() {
-            $(this).nextAll('.descriptions').slideToggle()
+            $(this).nextAll('.descriptions').first().slideToggle()
+            // $(this).css('color', 'red')
     })
 }
 
@@ -344,7 +345,6 @@ function cardProfile(arr, count) {
             '</div>'
         
     return card
-
 }
 
 // Create 'At A Glance' information when hovering over nodes
@@ -434,9 +434,7 @@ function networkHelper(target, helper) {
         $(target).on('mouseout', function() {
             $(helper).css({left: '-27rem'})
         })
-
     })
- 
 }
 
 
