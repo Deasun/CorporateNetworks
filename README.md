@@ -6,9 +6,9 @@ Connecting the dots between companies and the people who control them.
 ## Overview
 
 ### What is this application for?
-Corporate Networks is a research tool for activists to explore the links between people and companies. It is intended to be a supplementary tool to the excellent resources already provided by OpenCorporates.com and Corporate Watch. 
+Corporate Networks is a research tool for activists to explore the links between people and companies. It is intended to be a supplementary tool to the excellent resources already provided by [OpenCorporates](https://opencorporates.com/) and [Corporate Watch](https://corporatewatch.org/) 
 
-By simply entering a company's UK Companies House ID, a user-friendly, manipulable Corporate Network Map is produced providing details on:
+By simply entering a company's UK Companies House ID, a user-friendly and interactive Corporate Network Map is produced providing details on:
 * directors within the company (**Company A**)
 * other companies (**Companies B+**) who share directors with **Company A** and director information for **Companies B+**
 * General information (address, industry, Companies House ID) for **Company A** and **Companies B+**
@@ -42,14 +42,17 @@ During development, store the following environment variables in a **dev_config.
 
 During production environment variables are set in Heroku Config Vars during production and debug is set to 'False'.
 
+If you do not have a Companies House API Key, apply for one [here](https://developer.companieshouse.gov.uk/api/docs/index/gettingStarted.html#createaccount)
+
+If you do not have a OpenCorporates API Key, apply for one [here](https://opencorporates.com/users/sign_in) 
+
 ## Getting the code up and running
 1. Create a virtual environment running python 3.7.5 as the default in your IDE
 2. Clone this repository by running the ```git clone https://github.com/Deasun/CorporateNetworks.git``` command 
 3. pip install requirements
-4. Set your own environment variables for development mode as described in the Deployment section above. Save these in an dev_config.py file in your root directory. 
-> In app.py file:
-> Comment out **app.config.from_pyfile('config.py')**
-> Uncomment **app.config.from_pyfile('dev_config.py')** 
+4. Set your own environment variables for development mode as described in the Deployment section above. Save these in an dev_config.py file in your root directory. In development mode, ensure that following changes are made to the app.py file:  
+* comment out **app.config.from_pyfile('config.py')**
+* uncomment **app.config.from_pyfile('dev_config.py')** 
 
 5. The project will now run on localhost (http://127.0.0.1:5000/)
 
@@ -65,3 +68,6 @@ Dessie Donnelly (email: des_donn@mailbox.org)
 Equality Can't Wait & #BuildHomesNow campaign C/O PPR, Ground Floor, Community House, Citylink Business Park 6A Albert Street, Belfast, BT12 4HQ (tel: 028 90313315) Contact: Elfie Seymour (email: elfie@pprproject.org)
 
 Icons on the site are produced by dDara at [Flaticon](https://www.flaticon.com/authors/ddara)
+
+OpenCorporates credit
+Corporate Watch credit
