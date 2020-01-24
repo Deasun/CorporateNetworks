@@ -98,9 +98,7 @@ footer {
     margin: 0 auto 250px auto;
 }
 
-
 /* Home Page */
-
 .intro {
     color: #fff;
     font-weight: 300;
@@ -225,7 +223,6 @@ input:-webkit-autofill {
     margin-top: 5rem !important;
 }
 
-/* label underline focus color */
 .input-field input:focus {
     border-bottom: 1px solid #4BB639 !important;
   }
@@ -261,6 +258,7 @@ button {
         float: right;
     }
 
+/* Newtork Map Loader */
 .loader-circle {
     color: #fff;
     font-family: 'Abel', sans-serif;
@@ -311,7 +309,6 @@ button {
     display: none;
 }
     
-
 #co_list li {
     font-size: 13px;
 }
@@ -346,6 +343,7 @@ button {
     transition: .25s ease-in-out;
 }
 
+/* Network Map */
 .map-title {
     background-image: linear-gradient(#1c648a, #19181a);
     border-radius: 5px 10px 2px 2px;
@@ -380,7 +378,6 @@ button {
         box-shadow: none !important;
 
     }
-
 
 .map-info div {
     border-radius: 0px 10px 0 0;
@@ -463,11 +460,11 @@ button {
     margin: 0;
 }
 
-    .dir-list,
-    .background-details p {
-        cursor:pointer;
-        font-weight: 700;
-    }
+.dir-list,
+.background-details p {
+    cursor:pointer;
+    font-weight: 700;
+}
 
 #company-map {
     overflow: visible;
@@ -479,6 +476,7 @@ svg {
     top:50%;
 }
 
+/* Al A Glance Card */
 .sticky-col {
     position: sticky;
     top: 0;
@@ -507,7 +505,7 @@ svg {
 }
 
 
-/* Card */
+/* Company Profile Card */
 .placeholder {
     border: 5px solid #a9a9a95c;
     border-radius: 10px;
@@ -551,7 +549,6 @@ svg {
 }
 
 div[class^="card-profile-"] {
-    /* background: #646b2c; */
     border: 5px solid #646b2c;
     border-radius: 10px;
     box-shadow: 5px 5px 5px black;
@@ -637,7 +634,7 @@ hr {
     margin-top: 1rem;
 }
 
-/* Director's Lists */
+/* Directors' List */
 .director-list {
     padding-left: 3rem;
     padding-right: 3rem;
@@ -692,7 +689,6 @@ div[class^='content-finances-'] {
     text-align: center;
 }
 
-
 /* Nodes and Links */
 .link {
     stroke: #aaaaaa1a;
@@ -707,10 +703,7 @@ text.nodetext {
     text-shadow: 2px 1px black;
 }
 
-/* 
-Dig Deeper Section
-*/
-
+/* Dig Deeper Section */
 .dig-deeper-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -752,18 +745,17 @@ Dig Deeper Section
     grid-row: 2;
 }
 
-
-
-/* 
-Fonts
- */
-
-/* Titles */
-h1, h6, .header-list, footer p {
+/* Fonts*/
+h1, 
+h6, 
+.header-list, 
+footer p {
     font-family: 'Roboto Condensed', sans-serif;;
 }
 
-h2, h3, .white-text {
+h2, 
+h3, 
+.white-text {
     color:#fff;
     font-family: 'Abel', sans-serif;
 }

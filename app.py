@@ -13,16 +13,11 @@ import datetime
 
 app = Flask(__name__)
 
-"""
-Configuration Variables for Development
-"""
+""" Configuration Variables for Development """
 app.config.from_pyfile('dev_config.py')
 
-"""
-Configuration Variables for Production
-"""
+""" Configuration Variables for Production """
 # app.config.from_pyfile('config.py')
-
 
 mongo = PyMongo(app)
 
