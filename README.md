@@ -50,7 +50,7 @@ If you do not have a OpenCorporates API Key, apply for one [here](https://openco
 1. Create a virtual environment running python 3.7.5 as the default in your IDE
 2. Clone this repository by running the ```git clone https://github.com/Deasun/CorporateNetworks.git``` command 
 3. pip install requirements
-4. Set your own environment variables for development mode as described in the Deployment section above. Save these in an dev_config.py file in your root directory. In development mode, ensure that following changes are made to the app.py file:  
+4. Set your own environment variables for development mode as described in the Development and Production section above. Save these in an dev_config.py file in your root directory. In development mode, ensure that following changes are made to the app.py file:  
 * comment out **app.config.from_pyfile('config.py')**
 * uncomment **app.config.from_pyfile('dev_config.py')** 
 
@@ -58,7 +58,18 @@ If you do not have a OpenCorporates API Key, apply for one [here](https://openco
 
 ### Version 2.0
 Key features to be improved include:
-* sourcing more accurate and up to date financial information and/or presenting available information differently
+* sourcing more accurate and up to date financial information
+* introducing a Director search facility
+
+
+## License
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/legalcode)
+
+The [OpenCorporates](https://opencorporates.com/) database is made available under the [Open Database License (ODbL) v1.0](https://www.opendatacommons.org/licenses/odbl/1.0/) 
+
+Icons on the site are produced by dDara at [Flaticon](https://www.flaticon.com/authors/ddara)
+
+Information from [Corporate Watch](https://corporatewatch.org/) is share under the [Creative Commons Attribution-NonCommercial 3.0 Unported License](https://creativecommons.org/licenses/by-nc/3.0/deed.en_GB)
 
 ## Credits
 
@@ -66,8 +77,3 @@ Key features to be improved include:
 Dessie Donnelly (email: des_donn@mailbox.org)
 
 Equality Can't Wait & #BuildHomesNow campaign C/O PPR, Ground Floor, Community House, Citylink Business Park 6A Albert Street, Belfast, BT12 4HQ (tel: 028 90313315) Contact: Elfie Seymour (email: elfie@pprproject.org)
-
-Icons on the site are produced by dDara at [Flaticon](https://www.flaticon.com/authors/ddara)
-
-OpenCorporates credit
-Corporate Watch credit

@@ -12,6 +12,12 @@ body {
     position: relative;
 }
 
+.license {
+    position: fixed;
+    top: 5px;
+    right: 0;
+}
+
 footer {
     border-top: #1c648a 1px solid;
     bottom: -24px;
@@ -45,6 +51,10 @@ footer {
 
     .oc-logo img {
         width: 94%;
+    }
+
+    .oc-logo p {
+        margin-top: 0;
     }
 
     .footer-logo object {
