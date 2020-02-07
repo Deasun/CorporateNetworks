@@ -11,7 +11,6 @@ async API calls
 
 #  Get a single url
 async def fetch(aio_session, url):
-
 	async with aio_session.get(url) as response:
 		if response.status != 200:
 			pass
@@ -25,7 +24,6 @@ async def fetch_all(aio_session, urls):
 
 # Get officer data
 async def officer_data(url):
-
 	async with aiohttp.ClientSession() as aio_session:
 		json_response = await fetch(aio_session, url)
 	
@@ -33,7 +31,6 @@ async def officer_data(url):
 
 #  Get source company data
 async def source_co(urls):
-	
 	async with aiohttp.ClientSession() as aio_session:
         
 		json_response = await fetch_all(aio_session, urls)

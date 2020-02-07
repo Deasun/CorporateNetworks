@@ -201,13 +201,11 @@ class Company_Network:
 
 		nodes = []
 		pre_links = []
-
 		# Create Nodes
 		for source_company in self.companies:
 			
 			# Get Financial Information With Exceptions for 'None' Value
 			def get_financials(target):
-
 				try:
 					var = source_company['finances'][target]
 					return var
@@ -246,13 +244,11 @@ class Company_Network:
 
 			# Remove Duplicates from Source Officer List
 			source_officers = list(dict.fromkeys(source_company['officer_ids']))
-			
 			# Start Loop From Second Element
 			itercompany = iter(self.companies)			
 			next(itercompany)
 
 			for target_company in itercompany:
-
 				# Remove Duplicates from Target Officer List
 				target_officers = list(dict.fromkeys(target_company['officer_ids']))
 
@@ -264,7 +260,6 @@ class Company_Network:
 							'source': source_company['id'],
 							'target': target_company['id']
 						}
-						
 						# Remove duplicates
 						if link not in pre_links:
 							pre_links.append(link)
@@ -278,29 +273,23 @@ class Company_Network:
 
 			if node_id['_id'] not in companies:
 				companies.append(node_id['_id'])
-		
-		
 		# Match Source and Targets List of Active Companies 
 		# Remove All Links Which Include Dissolved Companies
 		for link_id in pre_links:
 			
 			if link_id['source'] not in companies:
-				
 				print("Link source redundant:")
 				pprint(link_id)
 				pass
 				
-			
 			elif link_id['target'] not in companies:
-				
 				print("Link target redundant:")
 				pprint(link_id)
 				pass
 				
 			else:
 				links.append(link_id) 				
-
-
+				
 		# Create Nodes and Links Object
 		chart_data = { "nodes": nodes, "links": links } 
 
@@ -323,11 +312,9 @@ class News_Updates:
 
 		get_url = requests.get(self.url)
 		bs_html = BeautifulSoup(get_url.text, 'lxml')
-
 		headline = bs_html.find_all(class_=self.tag_headline)
 
 		stories = []
-
 		for title in headline:
 			news_links = {
 				'text': title.text,

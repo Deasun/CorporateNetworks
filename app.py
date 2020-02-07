@@ -30,25 +30,20 @@ def home():
 
 	date = str(datetime.datetime.utcnow())
 	cal_date = slice(0,10)
-
 	query = { 'date' : date[cal_date]}
 
 	# Update news from Corporate Watch daily 
 	if mongo.db.netcorp.count_documents(query):
-
 		data = mongo.db.netcorp.find_one({'_id' : 'cw_news' })		
-
 		headlines = data['news']
 
 		return render_template('home.html', headlines=headlines)
 	
 	else:
-
 		coporate_watch = News_Updates(
 			'https://corporatewatch.org/',
 			'front-view-title'
 		)
-
 		# Scrape Corporate Watch for latest news and store in database
 		headlines = coporate_watch.update_news()
 
@@ -59,7 +54,6 @@ def home():
 		data = mongo.db.netcorp.find_one({'_id' : 'cw_news' })		
 		
 		headlines = data['news']
-
 		print("Corporate Watch news updated")
 
 		return render_template('home.html', headlines=headlines)
@@ -72,20 +66,18 @@ Check if Company Network currently exists in the database.
 def check_database():
 
 	if request.method == 'POST':
-
 		company_id = request.form['company_number'].upper().replace(" ","")
-
 		# Store company_id in session
 		session['company_id'] = company_id
 		
 		# Skip API calls if Company Network is in the database
 		if mongo.db.netcorp.count_documents({'Companies': {'$in': [company_id]}}, limit=1):
 			print(company_id + " exists in database search history")
-
+			
 			return redirect(url_for('chart_data', company_id=company_id))			
 
 		else:
-
+			
 			return redirect(url_for('source_data', company_id=company_id))
 
 
@@ -97,7 +89,6 @@ the API requests for the source company
 def source_data(company_id):
 
 	try:
-
 		company_network = []
 
 		urls = [
@@ -109,21 +100,17 @@ def source_data(company_id):
 		source_company = loop.run_until_complete(source_co(urls))
 
 		if source_company['status'] == 'Dissolved':
-
 			error_message = source_company['name'] + " are registered as 'Dissolved'."	
 
 			return render_template('home.html', error=error_message)
 
 		else:
-
 			company_network.append(source_company)
 
 			# Get Linked Companies
 			for officer in source_company['officer_ids']:
 
-				"""
-				Officer API call
-				"""
+				# Officer API call
 				url = 'https://' + app.config.get('CH_KEY') + ':@api.companieshouse.gov.uk/officers/' + officer + '/appointments'
 				officer_companies = loop.run_until_complete(officer_data(url))
 
@@ -132,7 +119,6 @@ def source_data(company_id):
 			
 				# API calls for Linked Companies
 				for company in companies:
-
 					urls = [
 						'https://api.opencorporates.com/v0.4/companies/gb/' + company + '?api_token=' + app.config.get('OC_KEY'),
 						'https://' + app.config.get('CH_KEY') + ':@api.companieshouse.gov.uk/company/' + company + '/officers',
@@ -143,7 +129,6 @@ def source_data(company_id):
 				
 				companies_combined = company_network + linked_companies
 
-
 			company_list = Company_Network(companies_combined)
 			chart_data = company_list.nodes_links()
 
@@ -151,7 +136,6 @@ def source_data(company_id):
 			link_companies = []
 
 			for company in chart_data['nodes']:
-
 				# Replace Duplicates	
 				mongo.db.netcorp.find_one_and_replace(
 					{ '_id' : company['_id'] }, company, upsert=True)
@@ -181,7 +165,6 @@ def source_data(company_id):
 			return redirect(url_for('chart_data', company_id=company_id))
 
 	except KeyError:
-
 		error_message = "Please enter a valid Company House ID number."	
 
 		return render_template('home.html', error=error_message)
