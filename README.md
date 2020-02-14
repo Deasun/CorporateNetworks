@@ -25,35 +25,30 @@ A [MongoDB](https://www.mongodb.com/) database is dynamically created, utilising
 
 The [D3](https://d3js.org/) javascript library is used to render the Network Chart. 
 
-The application is styled using HTML, CSS, and JavaScript (inc JQuery). It was developed using Visual Studio Code (v1.41.1) and is hosted on the [Heroku](https://www.heroku.com/) mobile application platform.
+The application is styled using HTML, CSS, and JavaScript (inc JQuery). It was developed using Visual Studio Code (v1.41.1) and is hosted on [pythonanywhere](https://www.pythonanywhere.com).
 
 While waiting for the Corporate Network to be generated, latest News from Corporate Watch is displayed. This news is scraped from [Corporate Watch](https://corporatewatch.org/) once daily using the [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) python library.
 
 ### Development and Production
-During development, store the following environment variables in a **dev_config.py** file (add to .gitignore) in the local directory:
+The following environment variables are managed using [python-dotenv](https://github.com/theskumar/python-dotenv) and stored in **.env** in the root directory (added to .gitignore):
 
 * SECRET_KEY (required by Flask)
 * MONGO_URI (provided by MongDB on database set-up)
 * CH_KEY (your Companies House API Key)
 * OC_KEY (your OpenCorporates API Key)
-* IP='127.0.0.1'
-* PORT='5000'
-* DEBUG='True'
 
-During production environment variables are set in Heroku Config Vars during production and debug is set to 'False'.
+The development server is set in **.flaskenv**
 
 If you do not have a Companies House API Key, apply for one [here](https://developer.companieshouse.gov.uk/api/docs/index/gettingStarted.html#createaccount)
 
 If you do not have a OpenCorporates API Key, apply for one [here](https://opencorporates.com/users/sign_in) 
 
+
 ## Getting the code up and running
 1. Create a virtual environment running python 3.7.5 as the default in your IDE
 2. Clone this repository by running the ```git clone https://github.com/Deasun/CorporateNetworks.git``` command 
 3. pip install requirements
-4. Set your own environment variables for development mode as described in the Development and Production section above. Save these in an dev_config.py file in your root directory. In development mode, ensure that following changes are made to the app.py file:  
-* comment out **app.config.from_pyfile('config.py')**
-* uncomment **app.config.from_pyfile('dev_config.py')** 
-
+4. Set your own environment variables 
 5. The project will now run on localhost (http://127.0.0.1:5000/)
 
 ### Version 2.0
