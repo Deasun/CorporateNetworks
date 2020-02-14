@@ -3,6 +3,7 @@ from flask_pymongo import PyMongo
 from models import Company, Officer, Company_Network, News_Updates
 from tasks import officer_data, source_co, linked_co
 from pprint import pprint
+from dotenv import load_dotenv
 import aiohttp
 from aiohttp import ClientSession
 import asyncio
@@ -13,11 +14,12 @@ import datetime
 
 app = Flask(__name__)
 
-""" Configuration Variables for Development """
-app.config.from_pyfile('dev_config.py')
-
-""" Configuration Variables for Production """
-# app.config.from_pyfile('config.py')
+# Environment Variables
+load_dotenv()
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
+app.config['MONGO_URI'] = os.getenv('MONGO_URI')
+app.config['CH_KEY'] = os.getenv('CH_KEY')
+app.config['OC_KEY'] = os.getenv('OC_KEY')
 
 mongo = PyMongo(app)
 
@@ -66,19 +68,28 @@ Check if Company Network currently exists in the database.
 def check_database():
 
 	if request.method == 'POST':
-		company_id = request.form['company_number'].upper().replace(" ","")
-		# Store company_id in session
-		session['company_id'] = company_id
-		
-		# Skip API calls if Company Network is in the database
-		if mongo.db.netcorp.count_documents({'Companies': {'$in': [company_id]}}, limit=1):
-			print(company_id + " exists in database search history")
-			
-			return redirect(url_for('chart_data', company_id=company_id))			
 
+		if request.form['company_number'] == '':
+
+			error_message = "Please enter a valid Company House ID number."	
+
+			return render_template('home.html', error=error_message)
+		
 		else:
+
+			company_id = request.form['company_number'].upper().replace(" ","")
+			# Store company_id in session
+			session['company_id'] = company_id
 			
-			return redirect(url_for('source_data', company_id=company_id))
+			# Skip API calls if Company Network is in the database
+			if mongo.db.netcorp.count_documents({'Companies': {'$in': [company_id]}}, limit=1):
+				print(company_id + " exists in database search history")
+				
+				return redirect(url_for('chart_data', company_id=company_id))			
+
+			else:
+				
+				return redirect(url_for('source_data', company_id=company_id))
 
 
 """
@@ -214,7 +225,4 @@ def dig_deeper():
 
 
 if __name__ == '__main__':
-	app.run(debug=app.config.get('DEBUG'), 
-			host=app.config.get('IP'), 
-			port=app.config.get('PORT'),
-			)
+	app.run()
