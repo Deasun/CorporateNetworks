@@ -234,13 +234,13 @@ class Company_Network:
 				'date_stamp': datetime.datetime.utcnow()
 				}
 			
-			# Remove Duplicates and Dissolved Companies from Nodes
-			if node not in nodes and node['status'] != 'Dissolved':
+
+			if node not in nodes: 
 				print('New node: ' + node['_id'])
 				nodes.append(node)
 
 			else:
-				print('Node ' + node['_id'] + ' already exists in chart data or is dissolved.')
+				print('Node ' + node['_id'] + ' already exists in chart data.')
 
 			# Remove Duplicates from Source Officer List
 			source_officers = list(dict.fromkeys(source_company['officer_ids']))
@@ -273,8 +273,8 @@ class Company_Network:
 
 			if node_id['_id'] not in companies:
 				companies.append(node_id['_id'])
+				
 		# Match Source and Targets List of Active Companies 
-		# Remove All Links Which Include Dissolved Companies
 		for link_id in pre_links:
 			
 			if link_id['source'] not in companies:
