@@ -4,24 +4,26 @@ function setNetwork() {
     let data = JSON.parse(raw_data)
     let count = 0
 
-
     networkName(data.nodes[0].name, '.header-title')
-
-    countDirectors(data.nodes, '.hover-profile-col')
-    addDirsList()
+    createSidebar(data.nodes, '.hover-profile-col')
     
-    addCompanyList(data.nodes)
+    addCompanyList(data.nodes, 'background-details')
     selectCompany()
 
-    highlightNode(data.nodes, '.dir-list')
-
+    addOfficerList()
+    selectOfficer(data.nodes, '.dir-list')    
+   
+    addIndustryList(data.nodes)
+    selectIndustry(data.nodes, '.total-industries h6')
+   
+    $('.hover-profile h6').after(networkMapGlance(data.nodes))
 
     let svg = d3.select('#company-map'),
         width = +svg.attr('width'),
         height = +svg.attr('height')
 
     let simulation = d3.forceSimulation()
-            .force('charge', d3.forceManyBody().strength(-1000))
+            .force('charge', d3.forceManyBody().strength(-1500))
             .force("center", d3.forceCenter(width / 2, height / 2))
             .force('link', d3.forceLink().id(function (d) { return d._id; }).distance(200))
             .force('x', d3.forceX(width / 2))
@@ -30,12 +32,11 @@ function setNetwork() {
         link = svg.selectAll('.link'),
         node = svg.selectAll('.node')
 
-
     link = link
         .data(data.links)
         .enter().append('line')
         .style('stroke-linecap', 'round')
-        .style('stroke', '#1c648a47')
+        .style('stroke', '#1c648a47') 
         .attr('stroke-width', 2)
 
     node = node
@@ -43,7 +44,12 @@ function setNetwork() {
         .enter()
         .append('g')
         .attr('class', 'node')
-        .style('fill', '#1c648a')
+        .style('fill', function (node_d) {
+            if (node_d.status == 'Active') {
+                return '#0080c4'
+            }
+            else {return '#ffffffa3'}
+        })
         .call(d3.drag()
             .on('start', dragstarted)
             .on('drag', dragged)
@@ -61,10 +67,10 @@ function setNetwork() {
             link
                 .style('visibility', function (link_d) {
                     return link_d.source._id === d._id || link_d.target._id === d._id ? 'visible' : 'hidden';
-                })
+                }) // add dissolved colors
                 .style('stroke', function (link_d) {
                     return link_d.source._id === d._id || link_d.target._id === d._id ? '#35864f7d' : 'hidden';
-                })
+                }) // add dissolved colors
             
             // Hide Nodes Not Linked
             let x,
@@ -73,7 +79,6 @@ function setNetwork() {
 
                 if (data.links[x].source._id === d._id|| data.links[x].target._id === d._id ) {
                     linksArr.push(data.links[x])
-
                 }
             }
 
@@ -84,7 +89,6 @@ function setNetwork() {
                 }
 
             node
-                .style('fill', '#479761')
                 .style('visibility', function (node_d) {
                     return matchesArr.includes(node_d._id) ? 'visible' : 'hidden';  
                 })
@@ -93,10 +97,17 @@ function setNetwork() {
         .on('mouseout', function (d) {
 
             $('.hover-profile p, .hover-profile ul').remove()
+            $('.hover-profile h6').after(networkMapGlance(data.nodes))
 
             node
                 .style('visibility', 'visible')
-                .style('fill', '#1c648a')
+                .style('fill', function (node_d) {
+                    if (node_d.status == 'Active') {
+                        return '#0080c4'
+                    }
+                    else {return '#ffffffa3'}
+                })
+        
             link
                 .style('visibility', 'visible')
                 .style('stroke', '#1c648a47')
@@ -138,7 +149,6 @@ function setNetwork() {
             toggleTag('.tab-directors-', '.content-details-', '.content-finances-', '.content-directors-', count)
             toggleTag('.tab-details-', '.content-directors-', '.content-finances-', '.content-details-', count)
             toggleTag('.tab-finances-', '.content-details-', '.content-directors-', '.content-finances-', count)
-
             closeProfile()
         })
     
