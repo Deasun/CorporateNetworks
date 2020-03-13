@@ -1,16 +1,18 @@
+<img src='static/images/cOlogo.png' width="200" height="200" title="Logo">
+
 <img src='static/icons/network.png' width="100" height="100" title="Logo">
 
 # Corporate Networks
-Connecting the dots between companies and the people who control them.
+Connect the dots between companies and the people who control them.
 
 ## Overview
 
 ### What is this application for?
-Corporate Networks is a research tool for activists to explore the links between people and companies. It is intended to be a supplementary tool to the excellent resources already provided by [OpenCorporates](https://opencorporates.com/) and [Corporate Watch](https://corporatewatch.org/) 
+Corporate Networks is a research tool for activists to explore the links between people and companies. It is both a more accessible of understanding relationship between companies and be a supplementary tool to the excellent resources already provided by [OpenCorporates](https://opencorporates.com/) and [Corporate Watch](https://corporatewatch.org/) 
 
 By simply entering a company's UK Companies House ID, a user-friendly and interactive Corporate Network Map is produced providing details on:
-* directors within the company (**Company A**)
-* other companies (**Companies B+**) who share directors with **Company A** and director information for **Companies B+**
+* officers within the company (**Company A**)
+* other companies (**Companies B+**) who share officers with **Company A** and officer information for **Companies B+**
 * General information (address, industry, Companies House ID) for **Company A** and **Companies B+**
 * Financial information submitted to UK Companies House (assets, liabilities, profits, charges). This information is sparse and dependent on the Companies House API. We have to work with the information provided. Useful links to OpenCorporates.com and Corporate Watch are embedded in the Corporate Network for users to explore finances, and company information in general, in more detail.
 
@@ -19,18 +21,18 @@ By simply entering a company's UK Companies House ID, a user-friendly and intera
 ### How does it work?
 The website is built on the [Flask](http://flask.palletsprojects.com/en/1.1.x/) microframework and written in **python 3.7.5**.
 
-A [MongoDB](https://www.mongodb.com/) database is dynamically created, utilising the [pyMongo](https://api.mongodb.com/python/current/) distribution, and is populated based on user's search results. Information is accessed from both [Companies House API](https://developer.companieshouse.gov.uk/api/docs/) and the [OpenCorporates API](https://api.opencorporates.com/) based on the user's search request. The database prevents duplicate API calls being made by accessing search history in the first instance.
+A [MongoDB](https://www.mongodb.com/) database is dynamically created, utilising the [pyMongo](https://api.mongodb.com/python/current/) distribution, and is populated based on users' search results. Information is accessed from both [Companies House API](https://developer.companieshouse.gov.uk/api/docs/) and the [OpenCorporates API](https://api.opencorporates.com/) based on the users' search requests. The database prevents duplicate API calls being made by accessing search history in the first instance.
 
 [AIOHTTP](https://aiohttp.readthedocs.io/en/stable/) for asyncio and Python is used to make asynchronous API calls.
 
 The [D3](https://d3js.org/) javascript library is used to render the Network Chart. 
 
-The application is styled using HTML, CSS, and JavaScript (inc JQuery). It was developed using Visual Studio Code (v1.41.1) and is hosted on [pythonanywhere](https://www.pythonanywhere.com).
+The application is styled using HTML, CSS, and JavaScript (inc JQuery), developed in Visual Studio Code (v1.41.1) and is hosted on [pythonanywhere](https://www.pythonanywhere.com).
 
 While waiting for the Corporate Network to be generated, latest News from Corporate Watch is displayed. This news is scraped from [Corporate Watch](https://corporatewatch.org/) once daily using the [Beautiful Soup](https://www.crummy.com/software/BeautifulSoup/bs4/doc/) python library.
 
 ### Development and Production
-The following environment variables are managed using [python-dotenv](https://github.com/theskumar/python-dotenv) and stored in **.env** in the root directory (added to .gitignore):
+The following environment variables are managed using [python-dotenv](https://github.com/theskumar/python-dotenv) and stored in **.env** in the root officery (added to .gitignore):
 
 * SECRET_KEY (required by Flask)
 * MONGO_URI (provided by MongDB on database set-up)
@@ -54,7 +56,7 @@ If you do not have a OpenCorporates API Key, apply for one [here](https://openco
 ### Version 2.0
 Key features to be improved include:
 * sourcing more accurate and up to date financial information
-* introducing a Director search facility
+* introducing a officer search facility
 
 
 ## License
@@ -69,6 +71,7 @@ Information from [Corporate Watch](https://corporatewatch.org/) is share under t
 ## Credits
 
 ### Developer
+codeOffensive
 Dessie Donnelly (email: des_donn@mailbox.org)
 
 Equality Can't Wait & #BuildHomesNow campaign C/O PPR, Ground Floor, Community House, Citylink Business Park 6A Albert Street, Belfast, BT12 4HQ (tel: 028 90313315) Contact: Elfie Seymour (email: elfie@pprproject.org)
