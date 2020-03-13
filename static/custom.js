@@ -17,6 +17,7 @@ $(document).on('click', 'circle', function() {
 })
 
 $(document).ready(function () {
+
     $('#customSwitch1').on('click', function() {
         if($('#customSwitch1').prop('checked')) {
             $('.custom-switch label').css('color', '#52ccb0')
@@ -29,7 +30,8 @@ $(document).ready(function () {
     
     let targets = [
         '.total-co h6',
-        '.total-dirs h6',
+        '.total-industries h6',
+        '.total-offs h6',
         '.hover-profile h6',
         'circle',
         '.map-title i'
@@ -37,6 +39,7 @@ $(document).ready(function () {
 
     let helpers = [
         '#companies-helper',
+        '#industries-helper',
         '#directors-helper',
         '#glance-helper',
         '#map-helper',
@@ -61,7 +64,7 @@ $(document).ready(function () {
     $('.input-field button').on('click', function () {
         $('.search-window').css('visibility', 'hidden')
         $('.loader-circle').delay(500).fadeIn(1000)
-        $('.loader-news').delay(2000).slideDown(4000)
+        $('.loader-news').delay(10000).slideDown(4000)
         $('.latest-news').each(function(index) {
             $(this).delay(500*index).fadeIn()
         })
@@ -91,6 +94,12 @@ $(document).ready(function () {
         $('.map-area .material-icons').toggleClass('rotate-icon')
     })
 
+    $('.hz-scroll p').animate({
+            left:'-100%',
+            opacity: 100,
+        }, 40000, 'linear', function() {
+        $(this).css('opacity', '0')
+        })
 })
 
 

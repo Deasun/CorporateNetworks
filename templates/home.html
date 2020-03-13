@@ -25,9 +25,9 @@
             <div class="tutorial-text">
                 <h2>Visualise</h2>
                 <blockquote>
-                    <p class="white-text">A Corporate Network map will display all the companies that share common directors with your search.</p>
-                    <p class="white-text">Each node is a company.</p>
-                    <p class="white-text">Each link indicates that two companies share one or more directors.</p>
+                    <p class="white-text">A Corporate Network map will display all the companies that share common officers with the company you enter.</p>
+                    <p class="white-text">Each node represents a company.</p>
+                    <p class="white-text">Each link indicates that two companies share one or more officers.</p>
                 </blockquote>    
             </div>
             <div class="map-image">
@@ -40,7 +40,7 @@
                 <h2>Explore</h2>
                 <blockquote>
                     <p class="white-text">Hover, drag, click to explore the connections.</p>
-                    <p class="white-text">Use the left-hand tabs to isolate specific companies or directors.</p>
+                    <p class="white-text">Use the left-hand tabs to isolate specific companies, officers or industries.</p>
                 </blockquote>
             </div>
             <div class="map-image">
@@ -52,7 +52,7 @@
             <div class="tutorial-text">
                 <h2>Compare</h2>
                 <blockquote>
-                    <p class="white-text">Click on the company nodes to explore information about company directors, finances and activities.</p>
+                    <p class="white-text">Click on the company nodes to explore information about company officers, finances and activities.</p>
                     <p class="white-text">Where are their headquarters?<br>Who do they owe money to?<br>What do they do?<br>Who's in control?</p>
                 </blockquote>
             </div>
@@ -65,8 +65,8 @@
             <div class="tutorial-text">
                 <h2>Strategise</h2>
                 <blockquote>
-                    <p class="white-text">Corporate Network Explorer is a launching pad for further investigations by those holding private power to account.</p>
-                    <p class="white-text">Use the map to identify key individuals, diverse business interests and vulnerabilities.</p>
+                    <p class="white-text">Corporate Network Explorer is a launching pad for further investigations by those holding private power to account. 
+                        Use the map to identify key individuals and their business interests.</p>
                     <p class="white-text">Click <a href='/dig-deeper' target='_blank'><i class="material-icons medium">info_outline</i></a> in the Company Profiles
                         to get Corporate Watch's guide to digging deeper.</p>
                 </blockquote>
@@ -86,12 +86,12 @@
     <div class="search-window">
         <i class="close-search material-icons">close</i>
         <div class='intro'>
-            <h3>Enter the Registered Company Number<br>to Explore its Corporate Network</h3>
-            <p>The Corporate Network will display the companies that share common Directors with the Company Number you enter.</p>
+            <h3>Enter the Registered Company ID<br>to Explore its Corporate Network</h3>
+            <p>The Corporate Network will display the companies that share common officers with the company number you enter.</p>
         </div>
         
         <form class='input-field' action="{{ url_for('check_database') }}" method="post" role="form">
-                <label for="company_number">Company Number</label>
+                <label for="company_number">Company ID</label>
                 <input id="searchForm" type="text" name="company_number">
                 <button id="search-btn" class="waves-effect waves-light" type="submit">Search
                     <i class="material-icons right">search</i>
@@ -137,6 +137,15 @@
                 
             </div>
         </div>
+    </div>
+
+    <div class="hz-scroll">
+        <p>Contains information from <a href="https://opencorporates.com/" target="_blank">
+            OpenCorporates.com</a> which is made available here under the Open Database License (ODbL). 
+            Icons made by
+            <a target="_blank" href="https://www.flaticon.com/authors/ddara" title="dDara">dDara</a> from
+            <a target="_blank" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        </p>
     </div>
 
 {% endblock %}
