@@ -69,7 +69,7 @@ Information from [Corporate Watch](https://corporatewatch.org/) is share under t
 ## Credits
 
 ### Developer
-codeOffensive
+[codeOffensive](https://twitter.com/CodeOffensive)
 Dessie Donnelly (email: des_donn@mailbox.org)
 
 Equality Can't Wait & #BuildHomesNow campaign C/O PPR, Ground Floor, Community House, Citylink Business Park 6A Albert Street, Belfast, BT12 4HQ (tel: 028 90313315) Contact: Elfie Seymour (email: elfie@pprproject.org)
