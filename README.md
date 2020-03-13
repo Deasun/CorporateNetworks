@@ -1,6 +1,4 @@
-<img src='static/images/cOlogo.png' width="200" height="200" title="Logo">
-
-<img src='static/icons/network.png' width="100" height="100" title="Logo">
+<img src='static/images/cOlogoB.png' width="80%" text-align="center" title="Logo">
 
 # Corporate Networks
 Connect the dots between companies and the people who control them.
