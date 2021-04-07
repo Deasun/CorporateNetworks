@@ -12,6 +12,7 @@ async API calls
 #  Get a single url
 async def fetch(aio_session, url):
 	async with aio_session.get(url) as response:
+		print(url)
 		if response.status != 200:
 			pass
 		return await response.json()
@@ -26,40 +27,39 @@ async def fetch_all(aio_session, urls):
 async def officer_data(url):
 	async with aiohttp.ClientSession() as aio_session:
 		json_response = await fetch(aio_session, url)
-	
+
 	return json_response
 
 #  Get source company data
 async def source_co(urls):
 	async with aiohttp.ClientSession() as aio_session:
-        
 		json_response = await fetch_all(aio_session, urls)
-        
+
 		company = Company(
-			json_response[0], 
-			json_response[1], 
+			json_response[0],
+			json_response[1],
 			json_response[2]
 			)
-		
+
 		profile = company.profile()
 
 		return profile
 
 # Get linked company data
-async def linked_co(urls, company_network):   
-    
+async def linked_co(urls, company_network):
+
 	async with aiohttp.ClientSession() as aio_session:
-        
+
 		json_response = await fetch_all(aio_session, urls)
-        
+
 		company = Company(
-			json_response[0], 
-			json_response[1], 
+			json_response[0],
+			json_response[1],
 			json_response[2]
 			)
-		
+
 		profile = company.profile()
 
-		company_network.append(profile) # filter out resigned 
+		company_network.append(profile) # filter out resigned
 
 	return company_network

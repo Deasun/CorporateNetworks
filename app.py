@@ -34,13 +34,13 @@ def home():
 	cal_date = slice(0,10)
 	query = { 'date' : date[cal_date]}
 
-	# Update news from Corporate Watch daily 
+	# Update news from Corporate Watch daily
 	if mongo.db.netcorp.count_documents(query):
-		data = mongo.db.netcorp.find_one({'_id' : 'cw_news' })		
+		data = mongo.db.netcorp.find_one({'_id' : 'cw_news' })
 		headlines = data['news']
 
 		return render_template('home.html', headlines=headlines)
-	
+
 	else:
 		coporate_watch = News_Updates(
 			'https://corporatewatch.org/',
@@ -50,11 +50,11 @@ def home():
 		headlines = coporate_watch.update_news()
 
 		mongo.db.netcorp.find_one_and_replace(
-			{ '_id' : 'cw_news' }, 
+			{ '_id' : 'cw_news' },
 			{ 'news' : headlines, 'date': date[cal_date] }, upsert=True)
-		
-		data = mongo.db.netcorp.find_one({'_id' : 'cw_news' })		
-		
+
+		data = mongo.db.netcorp.find_one({'_id' : 'cw_news' })
+
 		headlines = data['news']
 		print("Corporate Watch news updated")
 
@@ -71,24 +71,24 @@ def check_database():
 
 		if request.form['company_number'] == '':
 
-			error_message = "Please enter a valid Company House ID number."	
+			error_message = "Please enter a valid Company House ID number."
 
 			return render_template('home.html', error=error_message)
-		
+
 		else:
 
 			company_id = request.form['company_number'].upper().replace(" ","")
 			# Store company_id in session
 			session['company_id'] = company_id
-			
+
 			# Skip API calls if Company Network is in the database
 			if mongo.db.netcorp.count_documents({'Companies': {'$in': [company_id]}}, limit=1):
 				print(company_id + " exists in database search history")
-				
-				return redirect(url_for('chart_data', company_id=company_id))			
+
+				return redirect(url_for('chart_data', company_id=company_id))
 
 			else:
-				
+
 				return redirect(url_for('source_data', company_id=company_id))
 
 
@@ -96,7 +96,7 @@ def check_database():
 If Company Network does not exist in the database, run
 the API requests for the source company
 """
-@app.route('/source_data/<company_id>')	
+@app.route('/source_data/<company_id>')
 def source_data(company_id):
 
 	try:
@@ -111,7 +111,7 @@ def source_data(company_id):
 		source_company = loop.run_until_complete(source_co(urls))
 
 		if source_company['status'] == 'Dissolved':
-			error_message = source_company['name'] + " are registered as 'Dissolved'."	
+			error_message = source_company['name'] + " are registered as 'Dissolved'."
 
 			return render_template('home.html', error=error_message)
 
@@ -127,7 +127,7 @@ def source_data(company_id):
 
 				source_officer = Officer(officer, officer_companies)
 				companies = source_officer.companies()
-			
+
 				# API calls for Linked Companies
 				for company in companies:
 					urls = [
@@ -137,7 +137,7 @@ def source_data(company_id):
 					]
 
 					linked_companies = loop.run_until_complete(linked_co(urls, company_network))
-				
+
 				companies_combined = company_network + linked_companies
 
 			company_list = Company_Network(companies_combined)
@@ -147,7 +147,7 @@ def source_data(company_id):
 			link_companies = []
 
 			for company in chart_data['nodes']:
-				# Replace Duplicates	
+				# Replace Duplicates
 				mongo.db.netcorp.find_one_and_replace(
 					{ '_id' : company['_id'] }, company, upsert=True)
 
@@ -156,19 +156,19 @@ def source_data(company_id):
 			# Add Link Companies and Network Links to Searched Company Document
 			links = chart_data['links']
 
-			mongo.db.netcorp.find_one_and_update( 
-				{'_id' : chart_data['nodes'][0]['_id']}, 
+			mongo.db.netcorp.find_one_and_update(
+				{'_id' : chart_data['nodes'][0]['_id']},
 				{'$set': { 'network_links' : links }},
 			)
-			
-			mongo.db.netcorp.find_one_and_update( 
-				{'_id' : chart_data['nodes'][0]['_id']}, 
+
+			mongo.db.netcorp.find_one_and_update(
+				{'_id' : chart_data['nodes'][0]['_id']},
 				{'$set': { 'link_companies' : link_companies }},
 			)
 
 			# Update Search History
-			mongo.db.netcorp.find_one_and_update( 
-				{'_id' : 'Search History'}, 
+			mongo.db.netcorp.find_one_and_update(
+				{'_id' : 'Search History'},
 				{'$push': { 'Companies' : company_id }},
 				upsert=True
 			)
@@ -176,7 +176,8 @@ def source_data(company_id):
 			return redirect(url_for('chart_data', company_id=company_id))
 
 	except KeyError:
-		error_message = "Please enter a valid Company House ID number."	
+		print("key error")
+		error_message = "Please enter a valid Company House ID number."
 
 		return render_template('home.html', error=error_message)
 
@@ -221,7 +222,7 @@ def chart_data(company_id):
 def dig_deeper():
 
 	return render_template('dig-deeper.html')
-		
+
 
 
 if __name__ == '__main__':
